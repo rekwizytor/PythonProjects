@@ -33,13 +33,12 @@ class TimeDecorator:
  Czas max: {self.max} s \n Średni czas: {np.round(self.mean, 4)} s
  Odchylenie standardowe: {np.round(self.std, 4)} s'''
 
-
-
 @TimeDecorator
 def function(size):
     A = np.random.rand(size, size)
     B = np.random.rand(size, size)
     return np.dot(A, B)
+
 
 matrix_size = 5000
 
