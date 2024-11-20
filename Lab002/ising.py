@@ -47,25 +47,25 @@ class Ising:
         return tmp_spins
     
     def gen_image(self, image_name):
+        image = Image.new('RGB', (1000, 1000), 'white')
+        draw = ImageDraw.Draw(image)
+        n_width = 1000 / self.n_size
+        m_width = 1000 / self.m_size
+        for i in range(self.n_size):
+            for j in range(self.m_size):
+                x = n_width * i
+                y = m_width * j
+                sign = self.spins[i, j]
+                if sign == 1:
+                    draw.rectangle([x, y, x + n_width, y + m_width], fill='red')
+                else:
+                    draw.rectangle([x, y, x + n_width, y + m_width], fill='blue')
+        self.images.append(image)        
         if self.image_name is not None:
-            image = Image.new('RGB', (1000, 1000), 'white')
-            draw = ImageDraw.Draw(image)
-            n_width = 1000 / self.n_size
-            m_width = 1000 / self.m_size
-            for i in range(self.n_size):
-                for j in range(self.m_size):
-                    x = n_width * i
-                    y = m_width * j
-                    sign = self.spins[i, j]
-                    if sign == 1:
-                        draw.rectangle([x, y, x + n_width, y + m_width], fill='red')
-                    else:
-                        draw.rectangle([x, y, x + n_width, y + m_width], fill='blue')
-            self.images.append(image)
             image.save(f'images/{image_name}.png')
 
     def gen_gif(self):
-        if self.image_name is not None and self.gif_name is not None:
+        if self.gif_name is not None:
             self.images[0].save(f'{self.gif_name}.gif', save_all=True, append_images=self.images[1:], loop=0, duration=200)
     
     def run(self):
@@ -108,7 +108,7 @@ class Ising:
 
                 progress.advance(task1)
 
-            if self.image_name is not None and self.gif_name is not None:
+            if self.gif_name is not None:
                 task2 = progress.add_task("Generating GIF...", total=1)
                 self.gen_gif()
                 progress.advance(task2)
