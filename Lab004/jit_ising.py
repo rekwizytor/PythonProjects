@@ -51,7 +51,7 @@ def gen_image(spins, images, image_name = None):
     if image_name is not None:
         image.save(f'images/{image_name}.png')
 
-def gen_gif(images, image_name = None, gif_name = None):
+def gen_gif(images, gif_name = None):
     if gif_name is not None:
         images[0].save(f'{gif_name}.gif', save_all=True, append_images=images[1:], loop=0, duration=200)
     
@@ -102,6 +102,7 @@ def run(n_size, m_size, J = 1.0, beta = 1.0, B = 1.0, n_steps = 10, spin_density
                         spins = new_spins
                         H = new_H
 
+            
             gen_image(spins, images, f'{image_name}_{step+1}')
 
             magnetization = calc_magnetization(spins)
@@ -111,5 +112,5 @@ def run(n_size, m_size, J = 1.0, beta = 1.0, B = 1.0, n_steps = 10, spin_density
 
         if gif_name is not None:
             task2 = progress.add_task("Generating GIF...", total=1)
-            gen_gif(images, image_name, gif_name)
+            gen_gif(images, gif_name)
             progress.advance(task2)
