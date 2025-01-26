@@ -19,8 +19,8 @@ driver.get(url)
 button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#onetrust-accept-btn-handler')))
 button.click()
 
-button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#__next > div > div > div > main > div.ooa-v3cvs3.e1j93m721 > article > article > fieldset > form > section.ooa-qmp9fa.e1wnr56l6 > div:nth-child(1) > div.ooa-jra37b > div > input')))
-button.click()
+menu = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#__next > div > div > div > main > div.ooa-v3cvs3.e1j93m721 > article > article > fieldset > form > section.ooa-qmp9fa.e1wnr56l6 > div:nth-child(1) > div.ooa-jra37b > div > input')))
+menu.click()
 
 element = driver.find_element(By.ID, "porsche")
 element.click()
