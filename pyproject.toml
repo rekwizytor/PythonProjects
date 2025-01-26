@@ -20,6 +20,7 @@ sympy = "^1.13.3"
 requests = "^2.32.3"
 beautifulsoup4 = "^4.12.3"
 selenium = "^4.28.1"
+bokeh = "^3.6.2"
 
 
 [build-system]
